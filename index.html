@@ -11,13 +11,13 @@
     <style>
         /* --- CSS STYLES --- */
         :root {
-            --primary: #000000; /* Deep Black for high contrast headings */
-            --accent: #ff6b00; /* Vibrant Construction Orange from reference */
+            --primary: #0A2548; /* Deep Navy Blue from Logo */
+            --accent: #245B9D; /* Medium Blue for accents */
             --text-main: #374151;
             --text-muted: #6b7280;
             --bg-light: #ffffff;
-            --bg-alt: #f9fafb;
-            --bg-dark: #111827; /* Added for high-contrast sections */
+            --bg-alt: #f4f7fa; /* Subtle blue-gray for alternating sections */
+            --bg-dark: #051326; /* Very dark navy for high-contrast sections */
             --border-color: #e5e7eb;
             --transition: all 0.3s ease;
             --radius-large: 24px;
@@ -40,6 +40,11 @@
             color: var(--text-main);
             background-color: var(--bg-light);
             overflow-x: hidden;
+        }
+
+        a {
+            color: inherit !important;
+            text-decoration: none !important; /* Fix for the underline issue */
         }
 
         h1, h2, h3, h4, .font-heading {
@@ -99,7 +104,7 @@
         }
 
         .nav-links a {
-            color: var(--primary);
+            color: var(--primary) !important;
             text-decoration: none;
             font-weight: 600;
             font-size: 0.85rem;
@@ -109,13 +114,13 @@
         }
 
         .nav-links a:hover {
-            color: var(--accent);
+            color: var(--accent) !important;
         }
 
         .btn-outline {
             border: 2px solid var(--primary);
             padding: 10px 24px;
-            border-radius: 4px;
+            border-radius: 30px;
             background: transparent;
             cursor: pointer;
             font-family: 'Inter', sans-serif;
@@ -123,6 +128,8 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
             transition: var(--transition);
+            display: inline-block;
+            text-decoration: none !important;
         }
 
         .btn-outline:hover {
@@ -298,31 +305,76 @@
         /* Process Section (New) */
         .process-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
+            position: relative;
+        }
+
+        /* Connecting line for desktop view */
+        @media (min-width: 1024px) {
+            .process-grid::before {
+                content: '';
+                position: absolute;
+                top: 70px; /* Align with the center of the step circles */
+                left: 10%;
+                right: 10%;
+                height: 2px;
+                background: var(--border-color);
+                z-index: 0;
+            }
         }
 
         .process-step {
+            background: var(--bg-light);
+            padding: 40px 30px;
+            border-radius: var(--radius-medium);
+            border: 1px solid var(--border-color);
             position: relative;
+            z-index: 1;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+            border-color: var(--accent);
         }
 
         .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--bg-light);
+            color: var(--primary);
             font-family: 'Montserrat', sans-serif;
-            font-size: 4rem;
-            font-weight: 900;
-            color: var(--bg-alt);
-            text-shadow: -1px -1px 0 var(--border-color), 1px -1px 0 var(--border-color), -1px 1px 0 var(--border-color), 1px 1px 0 var(--border-color);
-            line-height: 1;
-            margin-bottom: -20px;
-            position: relative;
-            z-index: 1;
+            font-size: 1.5rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-bottom: 25px;
+            border: 2px solid var(--primary);
+            transition: var(--transition);
+        }
+
+        .process-step:hover .step-number {
+            background: var(--primary);
+            color: var(--bg-light);
         }
 
         .process-step h4 {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             margin-bottom: 15px;
-            position: relative;
-            z-index: 2;
+        }
+        
+        .process-step p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
         }
 
         /* Portfolio Gallery (New) */
@@ -424,16 +476,8 @@
         }
 
         .stars {
-            color: var(--accent);
+            color: #fbbf24;
             font-size: 1.2rem;
-        }
-
-        .rating-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            font-family: 'Montserrat', sans-serif;
-            color: white;
-            line-height: 1;
         }
 
         .review-grid {
@@ -447,25 +491,20 @@
             padding: 40px 30px;
             border-radius: var(--radius-medium);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
         }
 
         .review-card p {
             font-style: italic;
             margin-bottom: 25px;
             color: #d1d5db;
+            flex-grow: 1;
         }
 
         .reviewer {
-            display: flex;
-            align-items: center;
-            gap: 12px;
             font-weight: 600;
             color: white;
-        }
-
-        .reviewer i {
-            color: var(--accent);
-            font-size: 1.5rem;
         }
 
         /* Contact & Map */
@@ -522,7 +561,7 @@
         
         .footer-logo-container img {
             height: 50px;
-            filter: brightness(0) invert(1); /* Makes the logo white for the dark footer */
+            /* Removed the invert filter since you uploaded a white logo version */
         }
 
         .footer-logo-text {
@@ -550,7 +589,7 @@
         }
 
         .footer-links a {
-            color: #d1d5db;
+            color: #d1d5db !important;
             text-decoration: none;
             text-transform: uppercase;
             font-size: 0.85rem;
@@ -560,7 +599,7 @@
         }
 
         .footer-links a:hover {
-            color: var(--accent);
+            color: var(--accent) !important;
         }
 
         .copyright {
@@ -574,10 +613,6 @@
         @media (max-width: 1024px) {
             .split-section, .contact-section {
                 grid-template-columns: 1fr;
-            }
-            .process-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 50px 30px;
             }
             .hero-image-container {
                 height: 50vh;
@@ -593,9 +628,6 @@
             }
             .hero h1 {
                 font-size: 2.5rem;
-            }
-            .process-grid {
-                grid-template-columns: 1fr;
             }
             .contact-section {
                 padding: 30px;
@@ -782,7 +814,6 @@
         </div>
         
         <div class="review-stats">
-            <div class="rating-number">5.0</div>
             <div>
                 <div class="stars">
                     <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
@@ -794,15 +825,15 @@
         <div class="review-grid">
             <div class="review-card">
                 <p>"I Love working with Bluestone. Sol is attentive, Creative, and can make your dreams realize. I highly recommend him."</p>
-                <div class="reviewer"><i class="fas fa-user-circle"></i> Rachel Josef</div>
+                <div class="reviewer">Rachel Josef</div>
             </div>
             <div class="review-card">
                 <p>"I used Bluestone to gut renovate my home and they did an incredible job! Sol and his team were detailed oriented, professional and their customer service was amazing!"</p>
-                <div class="reviewer"><i class="fas fa-user-circle"></i> Yael G</div>
+                <div class="reviewer">Yael G</div>
             </div>
             <div class="review-card">
                 <p>"We are very happy with Bluestone Development. They were responsive and quick but did an excellent job. Consistent communication throughout the entire process."</p>
-                <div class="reviewer"><i class="fas fa-user-circle"></i> Adam Goldberg</div>
+                <div class="reviewer">Adam Goldberg</div>
             </div>
         </div>
     </div>
