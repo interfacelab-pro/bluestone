@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bluestone Construction | New York General Contractor</title>
+    <title>Bluestone Construction | High-End NYC General Contractor</title>
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- Google Fonts: Montserrat for bold structural headings, Inter for readable body text -->
@@ -17,6 +17,7 @@
             --text-muted: #6b7280;
             --bg-light: #ffffff;
             --bg-alt: #f9fafb;
+            --bg-dark: #111827; /* Added for high-contrast sections */
             --border-color: #e5e7eb;
             --transition: all 0.3s ease;
             --radius-large: 24px;
@@ -41,7 +42,7 @@
             overflow-x: hidden;
         }
 
-        h1, h2, h3, h4 {
+        h1, h2, h3, h4, .font-heading {
             font-family: 'Montserrat', sans-serif;
             color: var(--primary);
             text-transform: uppercase;
@@ -53,25 +54,42 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.5rem 5%;
-            background: var(--bg-light);
+            padding: 1rem 5%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
             z-index: 1000;
             border-bottom: 1px solid var(--border-color);
         }
 
-        .logo {
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             text-decoration: none;
-            font-family: 'Montserrat', sans-serif;
-            color: var(--primary);
-            font-size: 1.5rem;
-            font-weight: 900;
-            letter-spacing: -1px;
         }
 
-        .logo span {
+        .logo-img {
+            height: 48px;
+            width: 48px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary);
+            font-size: 1.4rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+
+        .logo-text span {
             color: var(--accent);
+            display: block;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
         }
 
         .nav-links {
@@ -98,6 +116,13 @@
             border: 2px solid var(--primary);
             padding: 10px 24px;
             border-radius: 4px;
+            background: transparent;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
         }
 
         .btn-outline:hover {
@@ -105,36 +130,42 @@
             color: var(--bg-light) !important;
         }
 
-        /* Hero Section (Matching Reference) */
+        /* Hero Section */
         .hero {
-            padding: 80px 5% 40px;
+            padding: 100px 5% 40px;
             text-align: center;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 7vw, 5.5rem);
-            line-height: 1;
+            font-size: clamp(2.5rem, 6vw, 5.5rem);
+            line-height: 1.05;
             margin-bottom: 1.5rem;
             font-weight: 900;
         }
 
+        .hero h1 span {
+            color: var(--accent);
+        }
+
         .hero p {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: var(--text-muted);
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto 3rem;
         }
 
         /* Large Rounded Images */
         .hero-image-container {
-            width: 100%;
-            height: 60vh;
-            max-height: 600px;
+            width: 90%;
+            max-width: 1400px;
+            height: 65vh;
+            max-height: 700px;
             border-radius: var(--radius-large);
             overflow: hidden;
-            margin-bottom: 60px;
+            margin: 0 auto 80px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
 
         .hero-image-container img {
@@ -146,13 +177,13 @@
 
         /* Generic Section Styles */
         section {
-            padding: 80px 5%;
+            padding: 100px 5%;
             max-width: 1400px;
             margin: 0 auto;
         }
 
         .section-header {
-            margin-bottom: 50px;
+            margin-bottom: 60px;
         }
 
         .section-header h2 {
@@ -161,23 +192,42 @@
             line-height: 1.1;
         }
 
+        .section-header.text-center {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+        }
+
+        .text-accent {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 10px;
+        }
+
         /* How it Works / About Split Section */
         .split-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 80px;
             align-items: center;
         }
 
         .split-content p {
             font-size: 1.1rem;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            color: var(--text-main);
         }
 
         .split-image {
             border-radius: var(--radius-large);
             overflow: hidden;
-            height: 500px;
+            height: 600px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            position: relative;
         }
 
         .split-image img {
@@ -186,12 +236,139 @@
             object-fit: cover;
         }
 
-        /* Benefits Grid (Matching Reference) */
+        .experience-badge {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            background: var(--primary);
+            color: white;
+            padding: 20px 30px;
+            border-radius: var(--radius-medium);
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+        }
+        
+        .experience-badge h3 {
+            color: var(--accent);
+            font-size: 2.5rem;
+            margin: 0;
+            line-height: 1;
+        }
+
+        /* Services Section (New) */
+        .services-section {
+            background-color: var(--bg-alt);
+            border-radius: var(--radius-large);
+            padding: 80px 5%;
+            margin: 40px 2%;
+            max-width: 96%;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--bg-light);
+            padding: 40px 30px;
+            border-radius: var(--radius-medium);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .service-card i {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        /* Process Section (New) */
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+
+        .process-step {
+            position: relative;
+        }
+
+        .step-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--bg-alt);
+            text-shadow: -1px -1px 0 var(--border-color), 1px -1px 0 var(--border-color), -1px 1px 0 var(--border-color), 1px 1px 0 var(--border-color);
+            line-height: 1;
+            margin-bottom: -20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .process-step h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Portfolio Gallery (New) */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: var(--radius-medium);
+            overflow: hidden;
+            height: 350px;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 50%);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        /* Benefits Grid */
         .benefits-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            margin-top: 40px;
         }
 
         .benefit-card {
@@ -200,19 +377,18 @@
             padding: 40px 30px;
             background: var(--bg-light);
             transition: var(--transition);
-            position: relative;
         }
 
         .benefit-card:hover {
             box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            border-color: var(--accent);
+            border-color: var(--primary);
         }
 
         .benefit-icon {
             width: 50px;
             height: 50px;
-            background: rgba(255, 107, 0, 0.1);
-            color: var(--accent);
+            background: var(--primary);
+            color: var(--bg-light);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -226,17 +402,18 @@
             margin-bottom: 15px;
         }
 
-        .benefit-card p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-        }
-
         /* Reviews Section */
         .reviews-bg {
-            background-color: var(--bg-alt);
+            background-color: var(--bg-dark);
+            color: white;
             border-radius: var(--radius-large);
             padding: 80px 5%;
-            margin: 40px 5%;
+            margin: 40px 2%;
+            max-width: 96%;
+        }
+
+        .reviews-bg .section-header h2 {
+            color: white;
         }
 
         .review-stats {
@@ -247,15 +424,16 @@
         }
 
         .stars {
-            color: #fbbf24;
+            color: var(--accent);
             font-size: 1.2rem;
         }
 
         .rating-number {
-            font-size: 2rem;
+            font-size: 2.5rem;
             font-weight: 800;
             font-family: 'Montserrat', sans-serif;
-            color: var(--primary);
+            color: white;
+            line-height: 1;
         }
 
         .review-grid {
@@ -265,44 +443,49 @@
         }
 
         .review-card {
-            background: var(--bg-light);
-            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px 30px;
             border-radius: var(--radius-medium);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .review-card p {
             font-style: italic;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            color: #d1d5db;
         }
 
         .reviewer {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             font-weight: 600;
-            color: var(--primary);
+            color: white;
         }
 
         .reviewer i {
             color: var(--accent);
+            font-size: 1.5rem;
         }
 
         /* Contact & Map */
         .contact-section {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1.5fr;
             gap: 60px;
+            background: var(--bg-alt);
+            border-radius: var(--radius-large);
+            padding: 60px;
         }
 
         .contact-info {
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 40px;
         }
 
         .contact-block h4 {
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             color: var(--accent);
             margin-bottom: 10px;
         }
@@ -314,45 +497,108 @@
         }
 
         .map-wrap {
-            border-radius: var(--radius-large);
+            border-radius: var(--radius-medium);
             overflow: hidden;
-            height: 400px;
+            height: 100%;
+            min-height: 400px;
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 60px 5% 40px;
-            border-top: 1px solid var(--border-color);
+            padding: 80px 5% 40px;
             margin-top: 40px;
+            background: var(--primary);
+            color: white;
         }
 
-        .footer-logo {
+        .footer-logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-logo-container img {
+            height: 50px;
+            filter: brightness(0) invert(1); /* Makes the logo white for the dark footer */
+        }
+
+        .footer-logo-text {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: 900;
-            margin-bottom: 20px;
-            color: var(--primary);
+            color: white;
+            text-align: left;
+            line-height: 1;
+        }
+
+        .footer-logo-text span {
+            color: var(--accent);
+            display: block;
+            font-size: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
         }
 
         .copyright {
-            color: var(--text-muted);
+            color: #6b7280;
             font-size: 0.9rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
         }
 
         /* Responsive */
-        @media (max-width: 968px) {
+        @media (max-width: 1024px) {
             .split-section, .contact-section {
                 grid-template-columns: 1fr;
             }
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 50px 30px;
+            }
+            .hero-image-container {
+                height: 50vh;
+            }
+            .split-image {
+                height: 450px;
+            }
+        }
+
+        @media (max-width: 768px) {
             .nav-links {
                 display: none; /* Simplification for mobile */
             }
-            .hero-image-container {
-                height: 40vh;
+            .hero h1 {
+                font-size: 2.5rem;
             }
-            .split-image {
-                height: 350px;
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+            .contact-section {
+                padding: 30px;
             }
         }
     </style>
@@ -361,50 +607,146 @@
 
     <!-- NAVIGATION -->
     <nav class="navbar">
-        <a href="#" class="logo">BLUESTONE <span>CONSTRUCTION</span></a>
+        <a href="#" class="logo-container">
+            <img src="bluestone-logo.png" alt="Bluestone Logo" class="logo-img">
+            <div class="logo-text">BLUESTONE<br><span>CONSTRUCTION</span></div>
+        </a>
         <div class="nav-links">
-            <a href="#about">About</a>
-            <a href="#benefits">Benefits</a>
+            <a href="#about">About Us</a>
+            <a href="#services">Services</a>
+            <a href="#portfolio">Portfolio</a>
             <a href="#reviews">Reviews</a>
-            <a href="#contact" class="btn-outline">Contact Us</a>
+            <a href="#contact" class="btn-outline">Get an Estimate</a>
         </div>
     </nav>
 
     <!-- HERO SECTION -->
     <section class="hero">
-        <h1>BLUESTONE<br>REALIZE YOUR DREAMS</h1>
-        <p>A high-end general contractor based in New York City. We combine professional project management with exceptional technical skill.</p>
+        <span class="text-accent">New York's Premier General Contractor</span>
+        <h1>PRECISION CRAFTSMANSHIP.<br><span>UNMATCHED RELIABILITY.</span></h1>
+        <p>Specializing in high-end gut renovations, custom builds, and luxury remodeling across New York City. We navigate the complexities of NYC construction so you don't have to.</p>
     </section>
 
     <!-- HERO IMAGE -->
-    <section style="padding-top: 0;">
-        <div class="hero-image-container">
-            <img src="https://acaryp.com/en/wp-content/uploads/2024/02/construction-of-villa-min.jpg" alt="Construction Worker on Site">
-        </div>
-    </section>
+    <div class="hero-image-container">
+        <!-- Using one of the provided Google Maps images -->
+        <img src="https://lh3.googleusercontent.com/p/AF1QipMZYQJtmh7m6mJ3sNKXZJNlYqgRTGDB5bhFTVnH=w1200-h800-p-k-no" alt="High-End Construction Interior">
+    </div>
 
     <!-- HOW IT WORKS / ABOUT -->
     <section id="about">
         <div class="split-section">
             <div class="split-content">
                 <div class="section-header" style="margin-bottom: 30px;">
-                    <h2>WHAT WE DO</h2>
+                    <span class="text-accent">Who We Are</span>
+                    <h2>ELEVATING NYC SPACES</h2>
                 </div>
-                <p><strong>Are you searching for a reliable contractor in NYC?</strong></p>
-                <p>Bluestone Construction is your dedicated partner for high-end renovations. Led by Sol and a team of meticulous professionals, we ensure consistent communication and outstanding quality from the first consultation to the final walkthrough.</p>
-                <p>We handle everything from gut renovations and modern kitchen remodels to structural expansions, bringing your vision to life.</p>
+                <p><strong>Are you searching for a reliable, elite contractor in NYC?</strong></p>
+                <p>Bluestone Construction is your dedicated partner for luxury renovations and commercial build-outs. Led by Sol and a team of meticulous professionals, we ensure consistent communication and outstanding quality from the first consultation to the final walkthrough.</p>
+                <p>Operating in New York requires distinct expertise. We handle everything from stringent Co-op and Condo board approvals to complex structural expansions, ensuring your project moves swiftly without compromising on detail.</p>
+                <a href="#contact" class="btn-outline" style="display: inline-block; margin-top: 20px;">Discuss Your Project</a>
             </div>
             <div class="split-image">
-                <img src="https://acaryp.com/en/construction-of-villa/" alt="Architectural Plans and Hardhat">
+                <!-- Using another provided Google Maps image -->
+                <img src="https://lh3.googleusercontent.com/p/AF1QipMdXqesQCIJd__gEQ9PIh27RmoV_AViPG9BWr-X=w800-h1000-p-k-no" alt="Construction Site Progress">
+                <div class="experience-badge">
+                    <h3>10+</h3>
+                    <p style="font-size: 0.8rem; margin-top: 5px;">Years of NYC<br>Excellence</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES (NEW SECTION) -->
+    <div class="services-section" id="services">
+        <div class="section-header text-center">
+            <span class="text-accent">Our Expertise</span>
+            <h2>COMPREHENSIVE SERVICES</h2>
+            <p style="margin-top: 15px; color: var(--text-muted);">From conceptual design to the final coat of paint, we provide end-to-end construction solutions tailored for the demanding NYC market.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-building"></i>
+                <h3>GUT RENOVATIONS</h3>
+                <p>Full-scale transformations of brownstones, townhouses, condos, and co-ops. We manage the demolition, structural updates, and complete rebuild.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-sink"></i>
+                <h3>KITCHEN & BATH</h3>
+                <p>Bespoke cabinetry installations, luxury fixture placements, and flawless tile work to modernize your home's most essential spaces.</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-store"></i>
+                <h3>COMMERCIAL BUILDS</h3>
+                <p>Retail, hospitality, and office build-outs. We understand that time is money, delivering your commercial space on schedule and on budget.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- OUR PROCESS (NEW SECTION) -->
+    <section id="process">
+        <div class="section-header">
+            <span class="text-accent">How We Work</span>
+            <h2>A SEAMLESS PROCESS</h2>
+        </div>
+        <div class="process-grid">
+            <div class="process-step">
+                <div class="step-number">01</div>
+                <h4>VISION & STRATEGY</h4>
+                <p class="text-muted">We begin with a detailed consultation to understand your aesthetic goals, budget, and timeline constraints.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">02</div>
+                <h4>APPROVALS & PERMITS</h4>
+                <p class="text-muted">We navigate NYC's red tape, handling DOB permits, landmark approvals, and strict building board requirements.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">03</div>
+                <h4>EXECUTION</h4>
+                <p class="text-muted">Our licensed tradesmen execute the build with precision, overseen by a dedicated project manager keeping you informed.</p>
+            </div>
+            <div class="process-step">
+                <div class="step-number">04</div>
+                <h4>DELIVERY</h4>
+                <p class="text-muted">A rigorous final walkthrough ensures every detail meets our elite standards before handing over the keys.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO GALLERY (NEW SECTION USING PROVIDED URLS) -->
+    <section id="portfolio" style="padding-top: 40px;">
+        <div class="section-header">
+            <span class="text-accent">Recent Work</span>
+            <h2>OUR PORTFOLIO</h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipMZYQJtmh7m6mJ3sNKXZJNlYqgRTGDB5bhFTVnH=w600-h854-p-k-no" alt="Portfolio Image 1">
+            </div>
+            <div class="gallery-item">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipMdXqesQCIJd__gEQ9PIh27RmoV_AViPG9BWr-X=w600-h854-p-k-no" alt="Portfolio Image 2">
+            </div>
+            <div class="gallery-item">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipPn2ixxghb50oFcZZsaUDdb8vN8vy2fzXleQLEI=w600-h854-p-k-no" alt="Portfolio Image 3">
+            </div>
+            <div class="gallery-item">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipMw6QvWVC5TAz9HXo11xm7poIlLfj6Wryn92QZv=w600-h854-p-k-no" alt="Portfolio Image 4">
+            </div>
+            <div class="gallery-item">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipO28Y1PtJzA0h3mvwTxX7c_517PVJDrD_8tXHjm=w600-h854-p-k-no" alt="Portfolio Image 5">
+            </div>
+            <div class="gallery-item">
+                <img src="https://lh3.googleusercontent.com/p/AF1QipOgsfYbC-OBZwCB5h-N-PiKTB1s4CwxyQJ4nh89=w600-h854-p-k-no" alt="Portfolio Image 6">
             </div>
         </div>
     </section>
 
     <!-- BENEFITS -->
     <section id="benefits">
-        <div class="section-header">
-            <h2>YOUR BENEFITS</h2>
-            <p style="color: var(--text-muted); margin-top: 10px;">Partnering with Bluestone means peace of mind.</p>
+        <div class="section-header text-center">
+            <span class="text-accent">Why Choose Us</span>
+            <h2>THE BLUESTONE ADVANTAGE</h2>
+            <p style="color: var(--text-muted); margin-top: 15px;">Partnering with a seasoned contractor means total peace of mind.</p>
         </div>
         
         <div class="benefits-grid">
@@ -413,21 +755,21 @@
                     <i class="fas fa-comments"></i>
                 </div>
                 <h4>CONSISTENT COMMUNICATION</h4>
-                <p>We pride ourselves on keeping you informed throughout the entire process. You will never be left in the dark regarding your project's status.</p>
+                <p>We pride ourselves on keeping you informed. You will receive regular progress reports and never be left in the dark regarding your project's status.</p>
             </div>
             <div class="benefit-card">
                 <div class="benefit-icon">
-                    <i class="fas fa-hammer"></i>
+                    <i class="fas fa-shield-alt"></i>
                 </div>
-                <h4>ATTENTIVE & CREATIVE</h4>
-                <p>Our team is highly detail-oriented. We listen to your specific needs and apply creative solutions to realize your dream space.</p>
+                <h4>FULLY LICENSED & INSURED</h4>
+                <p>We are a fully licensed, bonded, and insured NYC General Contractor. We protect your property and our workers at every phase.</p>
             </div>
             <div class="benefit-card">
                 <div class="benefit-icon">
                     <i class="fas fa-certificate"></i>
                 </div>
                 <h4>HIGH-END QUALITY</h4>
-                <p>Delivering incredible results is our standard. We use licensed professionals and high-quality materials to ensure your renovation stands the test of time.</p>
+                <p>Delivering incredible results is our standard. We source premium materials and employ master craftsmen to ensure your renovation stands the test of time.</p>
             </div>
         </div>
     </section>
@@ -435,16 +777,17 @@
     <!-- REVIEWS -->
     <div class="reviews-bg" id="reviews">
         <div class="section-header">
+            <span class="text-accent">Testimonials</span>
             <h2>CLIENT REVIEWS</h2>
         </div>
         
         <div class="review-stats">
-            <div class="rating-number">4.3</div>
+            <div class="rating-number">5.0</div>
             <div>
                 <div class="stars">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                 </div>
-                <div style="font-size: 0.9rem; color: var(--text-muted);">Based on 12 Google Reviews</div>
+                <div style="font-size: 0.9rem; color: #9ca3af; margin-top: 5px;">Based on verified Google Reviews</div>
             </div>
         </div>
 
@@ -467,6 +810,7 @@
     <!-- CONTACT -->
     <section id="contact">
         <div class="section-header">
+            <span class="text-accent">Ready to Start?</span>
             <h2>GET IN TOUCH</h2>
         </div>
         <div class="contact-section">
@@ -477,12 +821,13 @@
                 </div>
                 <div class="contact-block">
                     <h4>DIRECT CONTACT</h4>
-                    <p>+1 212-596-8600</p>
+                    <p><a href="tel:+12125968600" style="color: inherit; text-decoration: none;">+1 212-596-8600</a></p>
                 </div>
                 <div class="contact-block">
-                    <h4>HOURS</h4>
-                    <p>Open until 9:00 PM</p>
+                    <h4>HOURS OF OPERATION</h4>
+                    <p>Monday - Friday: 8:00 AM - 9:00 PM<br>Saturday - Sunday: By Appointment</p>
                 </div>
+                <button class="btn-outline" style="align-self: flex-start; margin-top: 20px;">Request a Quote</button>
             </div>
             <div class="map-wrap">
                 <!-- Map focused on 900 Riverside Dr, NY -->
@@ -500,9 +845,22 @@
 
     <!-- FOOTER -->
     <footer>
-        <div class="footer-logo">BLUESTONE <span>CONSTRUCTION</span></div>
+        <div class="footer-logo-container">
+            <!-- Using the uploaded logo, applying a CSS filter to make it white against the black background -->
+            <img src="bluestone-logo.png" alt="Bluestone Logo">
+            <div class="footer-logo-text">BLUESTONE<br><span>CONSTRUCTION</span></div>
+        </div>
+        
+        <div class="footer-links">
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#process">Process</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#contact">Contact</a>
+        </div>
+
         <div class="copyright">
-            &copy; 2026 Bluestone Construction. All rights reserved.
+            &copy; 2026 Bluestone Construction. All rights reserved. | Licensed & Insured NYC Contractor
         </div>
     </footer>
 
